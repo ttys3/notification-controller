@@ -87,6 +87,7 @@ const (
 	GitHubDispatchProvider string = "githubdispatch"
 	GitHubProvider         string = "github"
 	GitLabProvider         string = "gitlab"
+	GiteaProvider          string = "gitea"
 	BitbucketProvider      string = "bitbucket"
 	AzureDevOpsProvider    string = "azuredevops"
 	GoogleChatProvider     string = "googlechat"

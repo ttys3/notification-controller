@@ -73,6 +73,8 @@ func (f Factory) Notifier(provider string) (Interface, error) {
 		n, err = NewGitHubDispatch(f.URL, f.Token, f.CertPool)
 	case v1beta1.GitLabProvider:
 		n, err = NewGitLab(f.URL, f.Token, f.CertPool)
+	case v1beta1.GiteaProvider:
+		n, err = NewGitea(f.URL, f.Token, f.CertPool)
 	case v1beta1.BitbucketProvider:
 		n, err = NewBitbucket(f.URL, f.Token, f.CertPool)
 	case v1beta1.AzureDevOpsProvider:
