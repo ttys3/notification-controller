@@ -1,5 +1,5 @@
 # Image URL to use all building/pushing image targets
-IMG ?= fluxcd/notification-controller:latest
+IMG ?= docker.io/ttys3/fluxcd-notification-controller:v0.29.3
 # Produce CRDs that work back to Kubernetes 1.16
 CRD_OPTIONS ?= crd:crdVersions=v1
 SOURCE_VER ?= v0.24.0
@@ -99,11 +99,9 @@ generate: controller-gen
 
 # Build the docker image
 docker-build:
-	docker buildx build \
-	--platform=$(BUILD_PLATFORMS) \
+	docker build \
 	-t ${IMG} \
-	--load \
-	${BUILD_ARGS} .
+	.
 
 # Push the docker image
 docker-push:
@@ -135,7 +133,7 @@ fuzz-smoketest: fuzz-build
 		bash -c "/runner.sh"
 
 # Run fuzz tests for the duration set in FUZZ_TIME.
-fuzz-native: 
+fuzz-native:
 	KUBEBUILDER_ASSETS=$(KUBEBUILDER_ASSETS) \
 	FUZZ_TIME=$(FUZZ_TIME) \
 		./tests/fuzz/native_go_run.sh

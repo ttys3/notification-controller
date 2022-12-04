@@ -1,5 +1,5 @@
 ARG GO_VERSION=1.19
-ARG XX_VERSION=1.1.0
+ARG XX_VERSION=1.1.2
 
 FROM --platform=$BUILDPLATFORM tonistiigi/xx:${XX_VERSION} AS xx
 
@@ -18,6 +18,8 @@ COPY api/ api/
 # copy modules manifests
 COPY go.mod go.mod
 COPY go.sum go.sum
+
+ENV GOPROXY=https://goproxy.io,direct
 
 # cache modules
 RUN go mod download
